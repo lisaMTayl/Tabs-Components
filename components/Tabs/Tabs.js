@@ -8,14 +8,17 @@ class TabLink {
     // Get the custom data attribute on the Link
     // this.data;
     this.data = this.element.dataset.tab;
+
     // Using the custom data attribute get the associated Item element
     // this.itemElement;
     this.itemElement = document.querySelector(`.tab-items[data-tab='${this.data}']`);
+
     // Using the Item element, create a new instance of the TabItem class
     // this.tabItem;
-    this.tabItem = new TabItem(this.tabItem);
+    this.tabItem = new TabItem(this.itemElement);
+
     // Add a click event listener on this instance, calling the select method on click
-    this.element.addEventListener('click', () =>this.tabItem());
+    this.element.addEventListener('click', () => this.select()); // error - I had it set to itemElement instead of select.
   };
 
   select() {
@@ -24,20 +27,22 @@ class TabLink {
     const links = document.querySelectorAll('.tabs-link');
     // Using a loop or the forEach method remove the 'tabs-link-selected' class from all of the links
     // Array.from(links).forEach();
-    Array.from(links).forEach();
+    links.forEach(function (link) {
+      link.classList.remove('tabs-link-selected');
+    });
     // Add a class named "tabs-link-selected" to this link
     // this.element;
-
+    this.element.classList.add('tabs-link-selected');
     // Call the select method on the item associated with this link
-
+    this.tabItem.select();
   }
 }
 
 class TabItem {
-  constructor(item) {
+  constructor(element) {
     // Assign this.element to the passed in element
     // this.element;
-    this.item = item;
+    this.element = element;
 
   }
 
@@ -45,12 +50,18 @@ class TabItem {
 
     // Select all ".tabs-item" elements from the DOM
     // const items;
-    const items = items;
-    items = document.querySelectorAll()
+    const items = document.querySelectorAll('.tabs-item');
+
     // Remove the class "tabs-item-selected" from each element
-    
+    items.forEach(function (items) {
+      document.classList.remove('tabs-item-selected');
+      console.log(items);
+    });
+
     // Add a class named "tabs-item-selected" to this element
+    this.items = document.classList.add('tabs-item-selected')
     //this.element;
+
   }
 }
 
